@@ -1,6 +1,5 @@
-/*
- * Builds lang data from JSON files into javascript
- */
+#!/usr/bin/env node
+
 const 
 	{ buildLang } = require('../src/build'),
 	fs = require('fs'),

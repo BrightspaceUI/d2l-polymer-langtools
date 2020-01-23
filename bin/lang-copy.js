@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const
 	{ copyLang } = require('../src/copy'),
 	{ getTextDiff } = require('../src/diff'),
