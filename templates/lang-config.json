@@ -1,0 +1,14 @@
+{
+    "buildDir": "build/lang",
+    "buildTemplateFile": "build.template",
+    "copySourceLang": "en",
+    "langDir": "lang",
+    "langNames": [
+        "ar",
+        "de",
+        "en",
+        "es",
+        "fr",
+        "ja"
+    ]
+}

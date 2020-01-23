@@ -1,0 +1,21 @@
+{
+  "name": "d2l-polymer-langtools",
+  "version": "1.0.0",
+  "description": "Provides tools for copying/building language term files in D2L polymer repos.",
+  "bin": {
+    "lang-copy": "bin/lang-copy.js",
+    "lang-build": "src/build.js"
+  },
+  "scripts": {
+    "lint": "eslint src/**/*.js bin/**/*.js",
+    "test": "mocha"
+  },
+  "author": "D2L",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "chalk": "^2.4.2",
+    "eslint": "^6.8.0",
+    "mocha": "^7.0.0",
+    "yargs": "^13.2.4"
+  }
+}
