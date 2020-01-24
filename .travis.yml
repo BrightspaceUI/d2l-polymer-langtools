@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+- 11
+script:
+- npm run lint
+- npm run test
+env:
+  global:
+  - REPO_NAME=d2l-polymer-langtools
