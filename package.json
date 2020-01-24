@@ -13,9 +13,11 @@
   "author": "D2L",
   "license": "UNLICENSED",
   "devDependencies": {
-    "chalk": "^2.4.2",
     "eslint": "^6.8.0",
-    "mocha": "^7.0.0",
-    "yargs": "^13.2.4"
+    "mocha": "^7.0.0"
+  },
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "yargs": "^15.1.0"
   }
 }
