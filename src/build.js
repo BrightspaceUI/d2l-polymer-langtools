@@ -25,7 +25,9 @@ function pascalCase(str) {
 	return camel.charAt(0).toUpperCase() + camel.slice(1);
 }
 
-function buildLang(langName, langData, buildTemplate) {
+function buildLang(langName, langData, buildTemplate, expand) {
+	expand = expand || false;
+
 	const replacements = [
 		{
 			regex: /{{langPascal}}/g,
@@ -37,7 +39,7 @@ function buildLang(langName, langData, buildTemplate) {
 		},
 		{
 			regex: /{{langData}}/g,
-			value: JSON.stringify(langData)
+			value: expand ? JSON.stringify(langData, null, 4) : JSON.stringify(langData)
 		}
 	];
 

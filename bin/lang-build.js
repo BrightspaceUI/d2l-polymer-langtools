@@ -13,9 +13,15 @@ const args = yargs.usage('USAGE: $0 [options]\n\nBuilds lang data from JSON file
 		describe: 'Config file path',
 		required: true,
 		requiresArg: true
+	}).option('expand', {
+		alias: [ 'e' ],
+		describe: 'When this flag is set, JSON data inserted into build file will expanded to span multiple lines for readability. The default behaviour will compact inserted JSON onto a single line.',
+		boolean: true,
+		default: false
 	}).argv;
 
 const configFile = args.config;
+const expand = args.expand;
 
 let config = null;
 try {
@@ -54,6 +60,6 @@ config.langNames.forEach(langName => {
 	}
 
 	const langJson = readLangFile(langPath);
-	const built = buildLang(langName, langJson, templateContents);
+	const built = buildLang(langName, langJson, templateContents, expand);
 	fs.writeFileSync(`${config.buildDir}/${langName}.js`, built);
 });
