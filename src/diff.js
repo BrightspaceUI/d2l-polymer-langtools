@@ -33,9 +33,9 @@ function computeLangDiff(before, after, overrides) {
 				action,
 				term: key
 			});
-        }
+		}
         
-        return acc;
+		return acc;
 	}, []);
 }
 
