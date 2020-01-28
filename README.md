@@ -46,3 +46,7 @@ For help on running `lang-build` and to see options available, run:
 ```bash
 lang-build --help
 ```
+
+## Publishing
+
+To publish a new version of the package, update the version number in `/package.json` then make a new release in github.
