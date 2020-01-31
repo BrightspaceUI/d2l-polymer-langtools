@@ -48,7 +48,7 @@ function buildLang(langName, langData, buildTemplate, expand) {
 		built = built.replace(regex, value);
 	});
 
-	return built;
+	return JSON.stringify(built.replace(/"/g, "'"), null, '\t\t');
 }
 
 module.exports = {
