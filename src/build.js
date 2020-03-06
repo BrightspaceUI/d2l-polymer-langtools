@@ -39,7 +39,7 @@ function buildLang(langName, langData, buildTemplate, expand) {
 		},
 		{
 			regex: /{{langData}}/g,
-			value: expand ? JSON.stringify(langData, null, '\t\t').replace(/([^\\])"/g, "$1'") : JSON.stringify(langData)/* eslint-disable-line quotes */
+			value: expand ? JSON.stringify(langData, null, '\t\t').replace(/([^\\])"/g, "$1'").replace(/\\"/g, "\"") : JSON.stringify(langData)/* eslint-disable-line quotes */
 		}
 	];
 
