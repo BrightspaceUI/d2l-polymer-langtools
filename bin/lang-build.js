@@ -18,10 +18,16 @@ const args = yargs.usage('USAGE: $0 [options]\n\nBuilds lang data from JSON file
 		describe: 'When this flag is set, JSON data inserted into build file will expanded to span multiple lines for readability. The default behaviour will compact inserted JSON onto a single line.',
 		boolean: true,
 		default: false
+	}).option('expand-spacing', {
+		alias: [ 's' ],
+		describe: 'Spacing to use when expanding JSON. Can either be a number (of spaces) or a string which is prepended to each new indentation level. No effect without `expand` option.',
+		requiresArg: true,
+		default: 4
 	}).argv;
 
 const configFile = args.config;
 const expand = args.expand;
+const spacing = args.s;
 
 let config = null;
 try {
@@ -60,6 +66,6 @@ config.langNames.forEach(langName => {
 	}
 
 	const langJson = readLangFile(langPath);
-	const built = buildLang(langName, langJson, templateContents, expand);
+	const built = buildLang(langName, langJson, templateContents, expand, spacing);
 	fs.writeFileSync(`${config.buildDir}/${langName}.js`, built);
 });

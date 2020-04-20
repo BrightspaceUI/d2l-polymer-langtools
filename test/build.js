@@ -42,11 +42,30 @@ describe('buildLang()', () => {
             test: "test1",
             escapedQuotes: "This can \"have whatever qu\"otes inside\""
         };
-        const expected = `This should be unchanged\n{\n\t\t'test': 'test1',\n\t\t'escapedQuotes': 'This can "have whatever qu"otes inside"'\n}\nAlso unchanged`;
+        const expected = `This should be unchanged\n{\n    'test': 'test1',\n    'escapedQuotes': 'This can "have whatever qu"otes inside"'\n}\nAlso unchanged`;
 
         const built = buildLang('', langData, src, true);
 
         assert.equal(built, expected);
+    });
+
+    it('proper JSON spacing, matches configuration', () => {
+        const src = 'This should be unchanged\n{{langData}}\nAlso unchanged';
+        const langData = {
+            test: "test1",
+            escapedQuotes: "This can \"have whatever qu\"otes inside\"",
+            complex: {
+                nested: 'structure'
+            }
+        };
+        
+        const expectedDefault = `This should be unchanged\n{\n    'test': 'test1',\n    'escapedQuotes': 'This can "have whatever qu"otes inside"',\n    'complex': {\n        'nested': 'structure'\n    }\n}\nAlso unchanged`;
+        const expectedNumeric = `This should be unchanged\n{\n  'test': 'test1',\n  'escapedQuotes': 'This can "have whatever qu"otes inside"',\n  'complex': {\n    'nested': 'structure'\n  }\n}\nAlso unchanged`;
+        const expectedString = `This should be unchanged\n{\n\t'test': 'test1',\n\t'escapedQuotes': 'This can "have whatever qu"otes inside"',\n\t'complex': {\n\t\t'nested': 'structure'\n\t}\n}\nAlso unchanged`;
+
+        assert.equal(buildLang('', langData, src, true), expectedDefault);
+        assert.equal(buildLang('', langData, src, true, 2), expectedNumeric);
+        assert.equal(buildLang('', langData, src, true, '\t'), expectedString);
     });
 
 });

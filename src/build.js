@@ -25,8 +25,9 @@ function pascalCase(str) {
 	return camel.charAt(0).toUpperCase() + camel.slice(1);
 }
 
-function buildLang(langName, langData, buildTemplate, expand) {
+function buildLang(langName, langData, buildTemplate, expand, spacing) {
 	expand = expand || false;
+	spacing = spacing || 4;
 
 	const replacements = [
 		{
@@ -39,7 +40,7 @@ function buildLang(langName, langData, buildTemplate, expand) {
 		},
 		{
 			regex: /{{langData}}/g,
-			value: expand ? JSON.stringify(langData, null, '\t\t').replace(/([^\\])"/g, "$1'").replace(/\\"/g, "\"") : JSON.stringify(langData)/* eslint-disable-line quotes */
+			value: expand ? JSON.stringify(langData, null, spacing).replace(/([^\\])"/g, "$1'").replace(/\\"/g, "\"") : JSON.stringify(langData)/* eslint-disable-line quotes */
 		}
 	];
 
