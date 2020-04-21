@@ -25,8 +25,19 @@ function pascalCase(str) {
 	return camel.charAt(0).toUpperCase() + camel.slice(1);
 }
 
-function buildLang(langName, langData, buildTemplate, expand) {
+function expandData(obj, spacing) {
+	/* eslint-disable quotes */
+	return JSON.stringify(obj, null, spacing)
+		.replace(/([^\\])'/g, "$1\\'")	// Escape any existing single quotes
+		.replace(/([^\\])"/g, "$1'")	// Make JSON use single quotes instead of double
+		.replace(/\\"/g, "\"")			// Convert escaped double quotes to regular (now that JSON is using single)
+	;
+	/* eslint-enable quotes */
+}
+
+function buildLang(langName, langData, buildTemplate, expand, spacing) {
 	expand = expand || false;
+	spacing = spacing || 4;
 
 	const replacements = [
 		{
@@ -39,7 +50,7 @@ function buildLang(langName, langData, buildTemplate, expand) {
 		},
 		{
 			regex: /{{langData}}/g,
-			value: expand ? JSON.stringify(langData, null, '\t\t').replace(/([^\\])"/g, "$1'").replace(/\\"/g, "\"") : JSON.stringify(langData)/* eslint-disable-line quotes */
+			value: expand ? expandData(langData, spacing) : JSON.stringify(langData)
 		}
 	];
 
