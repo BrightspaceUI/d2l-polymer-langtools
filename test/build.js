@@ -40,9 +40,9 @@ describe('buildLang()', () => {
         const src = 'This should be unchanged\n{{langData}}\nAlso unchanged';
         const langData = {
             test: "test1",
-            escapedQuotes: "This can \"have whatever qu\"otes inside\""
+            escapedQuotes: "This can \"have whatever qu\"otes in one's imagination\""
         };
-        const expected = `This should be unchanged\n{\n    'test': 'test1',\n    'escapedQuotes': 'This can "have whatever qu"otes inside"'\n}\nAlso unchanged`;
+        const expected = `This should be unchanged\n{\n    'test': 'test1',\n    'escapedQuotes': 'This can "have whatever qu"otes in one\\'s imagination"'\n}\nAlso unchanged`;
 
         const built = buildLang('', langData, src, true);
 
