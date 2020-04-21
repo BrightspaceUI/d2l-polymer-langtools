@@ -23,11 +23,17 @@ const args = yargs.usage('USAGE: $0 [options]\n\nBuilds lang data from JSON file
 		describe: 'Spacing to use when expanding JSON. Can either be a number (of spaces) or a string which is prepended to each new indentation level. No effect without `expand` option.',
 		requiresArg: true,
 		default: 4
+	}).option('expand-double-quotes', {
+		alias: [ 'd' ],
+		describe: 'When this flag is set, expanded JSON output will use double quotes instead of single quotes. No effect without `expand` option.',
+		boolean: true,
+		default: false
 	}).argv;
 
 const configFile = args.config;
 const expand = args.expand;
 const spacing = args.s;
+const doubleQuotes = args.d;
 
 let config = null;
 try {
@@ -66,6 +72,6 @@ config.langNames.forEach(langName => {
 	}
 
 	const langJson = readLangFile(langPath);
-	const built = buildLang(langName, langJson, templateContents, expand, spacing);
+	const built = buildLang(langName, langJson, templateContents, expand, spacing, doubleQuotes);
 	fs.writeFileSync(`${config.buildDir}/${langName}.js`, built);
 });

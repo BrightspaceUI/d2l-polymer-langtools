@@ -68,4 +68,17 @@ describe('buildLang()', () => {
         assert.equal(buildLang('', langData, src, true, '\t'), expectedString);
     });
 
+    it('proper langData expansion with double quote option', () => {
+        const src = 'This should be unchanged\n{{langData}}\nAlso unchanged';
+        const langData = {
+            test: "test1",
+            escapedQuotes: "This can \"have whatever qu\"otes in one's imagination\""
+        };
+        const expected = `This should be unchanged\n{\n    "test": "test1",\n    "escapedQuotes": "This can \\"have whatever qu\\"otes in one's imagination\\""\n}\nAlso unchanged`;
+
+        const built = buildLang('', langData, src, true, 4, true);
+
+        assert.equal(built, expected);
+    });
+
 });

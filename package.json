@@ -1,6 +1,6 @@
 {
   "name": "d2l-polymer-langtools",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Provides tools for copying/building language term files in D2L polymer repos.",
   "bin": {
     "lang-copy": "bin/lang-copy.js",
