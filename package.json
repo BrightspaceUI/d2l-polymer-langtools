@@ -1,6 +1,6 @@
 {
   "name": "d2l-polymer-langtools",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "author": "D2L Corporation",
   "license": "Apache-2.0",
   "description": "Provides tools for copying/building language term files in D2L polymer repos.",
